@@ -1,8 +1,8 @@
 from flask import render_template, redirect, url_for, request, flash
 from . import auth
 from flask_login import login_user, logout_user, login_required
-from .views import RegistrationForm, loginForm
-# from ..models import RegistrationForm, loginForm
+from ..models import User
+from .forms import RegistrationForm,LoginForm
 from .. import db
 
 # registration route
@@ -26,7 +26,7 @@ def login():
     '''
     Function that checks if the form is validated
     '''
-    login_form = loginForm()
+    login_form = LoginForm()
     if login_form.validate_on_submit():
         user = User.query.filter_by(email=login_form.email.data).first()
         if user is not None and user.verify_password(login_form.password.data):
