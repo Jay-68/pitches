@@ -1,23 +1,15 @@
 <!-- Display all the categories -->
-{% macro displayCategoryList(category_list) %} 
-
-{% for category in category_list %}
+{% macro displayCategoryList(category_list) %} {% for category in category_list %}
 
 <div class="well well-lg col-xs-12 col-sm-12 col-md-12 col-lg-12 pitch-card text-center">
   <h2><a href="/category/{{category.id}}"> {{ category.name }} </a></h2>
   <h4>{{ category.description }}</h4>
 </div>
-
-{% endfor %}
-
-{% endmacro %}
+{% endfor %}{% endmacro %}
 
 <!-- display Pitches -->
 
-{% macro displayPitches(pitch_list) %} 
-
-{% for pitches in pitch_list %}
-
+{% macro displayPitches(pitch_list) %} {% for pitches in pitch_list %}
 <div id="contentinfo col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
   <ul style="list-style-type:square">
     <li>
@@ -26,19 +18,12 @@
     <hr>
   </ul>
 </div>
-
-{% endfor %}
-
-{% endmacro %}
+{% endfor %}{% endmacro %}
 
 
 <!-- display specific pitch -->
-{% macro displaySpecificPitch(specific_pitch_list) %}
-
-{% for comment in specific_pitch_list %}
+{% macro displaySpecificPitch(specific_pitch_list) %} {% for comment in specific_pitch_list %}
 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
   <hr> {{comment.comment_section_id}}
 </div>
-{% endfor %}
-
-{% endmacro %}
+{% endfor %}{% endmacro %}
