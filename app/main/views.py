@@ -97,7 +97,8 @@ def new_comment(id):
 
     if form.validate_on_submit():
         comment_section_id = form.comment_section_id.data
-        new_comment = Comments(comment_section_id=comment_section_id,user_id=current_user.id, pitches_id=pitches.id)
+        new_comment = Comments(comment_section_id=comment_section_id,
+                               user_id=current_user.id, pitches_id=pitches.id)
         new_comment.save_comment()
         return redirect(url_for('.category', id=pitches.id))
 
