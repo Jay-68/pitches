@@ -15,30 +15,26 @@ class User(UserMixin, db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255))
-    hash_pass = db.Column(db.String(255))
+    password_hash = db.Column(db.String(255))
     email = db.Column(db.String(255), unique=True, index=True)
     profile_pic_path = db.Column(db.String(255))
     bio = db.Column(db.String(255))
-
     pitches = db.relationship('Pitch', backref='user', lazy='dynamic')
     comments = db.relationship('Comment', backref='user', lazy='dynamic')
-    upvotes = db.relationship('UpVote', backref='user', lazy='dynamic')
-    downvotes = db.relationship('DownVote', backref='user', lazy='dynamic')
-    photos = db.relationship('PhotoProfile', backref='user', lazy="dynamic")
-
+    
     @property
     def password(self):
         raise AttributeError("You can not read password attribute")
 
     @password.setter
     def password(self, password):
-        self.hash_pass = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password)
 
     def set_password(self, password):
-        self.hash_pass = generate_password_hash(password)
+        self.password_hash = generate_password_hash(password)
 
     def verify_password(self, password):
-        return check_password_hash(self.hash_pass, password)
+        return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
         return f'User {self.username}'
@@ -48,7 +44,7 @@ class Pitch(db.Model):
     __tablename__ = 'pitches'
 
     id = db.Column(db.Integer, primary_key=True)
-    pitch_content = db.Column(db.String())
+    pitch_content = db.Column(db.String)
     pitch_category = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
@@ -78,7 +74,7 @@ class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True)
-    comment_content = db.Column(db.String())
+    comment_content = db.Column(db.String)
     pitch_id = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
@@ -95,7 +91,6 @@ class Comment(db.Model):
 class UpVote(db.Model):
     __tablename__ = 'upvotes'
     id = db.Column(db.Integer, primary_key=True)
-    id_user = db.Column(db.Integer, db.ForeignKey('users.id'))
     pitching_id = db.Column(db.Integer)
 
     def save_vote(self):
@@ -115,7 +110,6 @@ class DownVote(db.Model):
     __tablename__ = 'downvotes'
 
     id = db.Column(db.Integer, primary_key=True)
-    id_user = db.Column(db.Integer, db.ForeignKey('users.id'))
     pitching_id = db.Column(db.Integer)
 
     def save_vote(self):
@@ -131,9 +125,3 @@ class DownVote(db.Model):
         return f'{self.id_user}:{self.pitching_id}'
 
 
-class PhotoProfile(db.Model):
-    __tablename__ = 'profile_photos'
-
-    id = db.Column(db.Integer, primary_key=True)
-    pic_path = db.Column(db.String())
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))

@@ -7,12 +7,12 @@ from app import db
 class TestPitch(unittest.TestCase):
 
     def setUp(self):
-        self.user_joe = User(
-            username='joe', password='password', email='abc@defg.com')
+        self.user_john = User(
+            username='john', password='password', email='abc@defg.com')
         self.new_pitch = Pitch(
-            pitch_content="This is my pitch", pitch_category='Business', user=self.user_joe)
+            pitch_content="This is my pitch", pitch_category='Business', user=self.user_john)
         self.new_comment = Comment(
-            comment_content="This is my comment", user=self.user_joe)
+            comment_content="This is my comment", user=self.user_john)
 
     def tearDown(self):
         db.session.delete(self)
@@ -27,4 +27,4 @@ class TestPitch(unittest.TestCase):
         self.assertEquals(self.new_comment.comment_content,
                           "This is my comment")
         self.assertEquals(self.new_comment.pitch, self.new_pitch)
-        self.assertEquals(self.new_comment.user, self.user_joe)
+        self.assertEquals(self.new_comment.user, self.user_john)

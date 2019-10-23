@@ -7,10 +7,10 @@ from app import db
 class TestPitch(unittest.TestCase):
 
     def setUp(self):
-        self.user_joe = User(
-            username='joe', password='password', email='abc@defg.com')
+        self.user_john = User(
+            username='john', password='password', email='abc@defg.com')
         self.new_pitch = Pitch(
-            pitch_content="This is my pitch", pitch_category='Business', user=self.user_joe)
+            pitch_content="This is my pitch", pitch_category='Business', user=self.user_john)
 
     def tearDown(self):
         Pitch.query.delete()
@@ -22,4 +22,4 @@ class TestPitch(unittest.TestCase):
     def test_check_instance_variables(self):
         self.assertEquals(self.new_pitch.pitch_content, "This is my pitch")
         self.assertEquals(self.new_pitch.pitch_category, 'Business')
-        self.assertEquals(self.new_pitch.user, self.user_joe)
+        self.assertEquals(self.new_pitch.user, self.user_john)
