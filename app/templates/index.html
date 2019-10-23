@@ -1,11 +1,22 @@
-{% extends 'base.html'%} {% import 'macros.html' as macro%} {%block styles%} {{ super() }}
-<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">{%endblock%}
+{% extends 'base.html'%} {% block content %}
+<div class="container-fluid cool">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 welcome">
+        <div class="intro">
+          <h1 class="welcome animated slideInLeft" style="animation-delay:0s">Welcome</h1>
+          <h2 class="hey animated slideInRight" style="animation-delay:1s">One Minute Pitch</h2>
+          <p class="para animated slideInLeft" style="animation-delay:2s">"The road to success and the road to failure
+            are almost exactly the same." -- Colin R. Davis</p>
 
-<!-- Content block -->
-{% block content %}
-
-<div class="container">
-  <h3 style="text-align:center;">Choose a category</h3>
-  <ul>{{ macro.displayCategoryList(categories) }}</ul>
-</div> {% endblock %}
-<footer>Copyright &copy; Mweru Muchai</footer>
+          {% if current_user.is_authenticated%}
+          <a id="start" class="btn btn-danger text-center" href="{{url_for('main.home')}}"><span class="view">View
+              Pitches</span></a> {% else %}
+          <a id="start" class="btn btn-danger text-center" href="{{url_for('auth.login')}}"><span class="view">Sign
+              In</span> </a> {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
