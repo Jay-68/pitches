@@ -99,8 +99,8 @@ class UpVote(db.Model):
 
     @classmethod
     def get_votes(cls, id):
-        upvote = Upvote.query.filter_by(pitching_id=id).all()
-        return upvote
+        UpVote = UpVote.query.filter_by(pitching_id=id).all()
+        return UpVote
 
     def __repr__(self):
         return f'{self.id_user}:{self.pitching_id}'
