@@ -38,7 +38,7 @@ def profile(uname, id_user):
 @main.route('/home/like/<int:id>', methods=['GET', 'POST'])
 @login_required
 def like(id):
-    get_pitches = upvotes.get_upvotes(id)
+    get_pitches = UpVote.get_upvotes(id)
     valid_string = f'{current_user.id}:{id}'
 
     for get_pitch in get_pitches:

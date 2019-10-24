@@ -92,6 +92,7 @@ class UpVote(db.Model):
     __tablename__ = 'upvotes'
     id = db.Column(db.Integer, primary_key=True)
     pitching_id = db.Column(db.Integer)
+    id_user=db.Column(db.Integer,db.ForeignKey('users.id'))
 
     def save_vote(self):
         db.session.add(self)

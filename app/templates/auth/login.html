@@ -12,12 +12,12 @@
 
       <!-- Login form -->
 
-      <div class="col-md-12 pitch-form">
-        <h3 class="ho text-center">Log in</h3>
-        <h5 class="he text-center">Fill in the form to log in</h5>
+      <div class="col-md-12 pitch-form mt-5">
+        <h3 class="text-center">Log in</h3>
+        <h5 class="text-center">Fill in the form to log in</h5>
         <hr> {{ wtf.quick_form(login_form)}}
         <br>
-        <div class="real">
+        <div class="foot">
           <p>New User?<a href="{{url_for('auth.register')}}">Sign up here</a></p>
           <p>Forgot Password?<a href="{{url_for('auth.reset_password')}}">Reset Password</a></p>
         </div>
@@ -27,4 +27,16 @@
     <div class="col-md-3"></div>
   </div>
 </div>
+<style>
+  .container {
+
+    height: 550px;
+    background-size: 100% 100%;
+    background-image: url(https://images.pexels.com/photos/1037992/pexels-photo-1037992.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  }
+
+  .foot {
+    margin: auto;
+  }
+</style>
 {% endblock %}
