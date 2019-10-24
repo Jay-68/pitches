@@ -39,11 +39,7 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with general configuration settings
     '''
-    MAIL_SERVER = os.environ.get('MAIL_SERVER')
-    MAIL_PORT = os.environ.get('MAIL_PORT')
-    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS')
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
 
