@@ -6,8 +6,8 @@ class Config:
     '''
     Describes the general configurations
     '''
-    SECRET_KEY = os.urandom(32)
-    # app.config['SECRET_KEY'] = 'bEtteR23'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
     DATABASE_PASS = os.environ.get('DATABASE_PASS')
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
