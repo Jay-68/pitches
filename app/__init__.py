@@ -33,7 +33,7 @@ def create_app(config_name):
     mail.init_app(app)
     simple.init_app(app)
     # Setting up configuration
-    app.config.from_object(DevConfig)
+    # app.config.from_object(DevConfig)
 
     # registering the main app Blueprint
     from .main import main as main_blueprint
