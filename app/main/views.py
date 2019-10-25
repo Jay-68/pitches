@@ -115,10 +115,6 @@ def pitch(id):
         return redirect(url_for('main.pitch', id=id))
 
     all_comments = Comment.get_comments(id)
-
-    # up_likes = UpVote.get_votes(id)
-    # down_likes = DownVote.get_downvotes(id)
-
     title = 'Comment | One Minute Pitch'
     return render_template('pitch.html', pitch=my_pitch, comment_form=comment_form, comments=all_comments, title=title)
 
@@ -160,6 +156,5 @@ def update_pic(uname):
         filename = photos.save(request.files['photo'])
         path = f'photos/{filename}'
         user.profile_pic_path = path
-        # user_photo = PhotoProfile(pic_path = path,user = user)
         db.session.commit()
     return redirect(url_for('main.profile', uname=uname, id_user=current_user.id))
